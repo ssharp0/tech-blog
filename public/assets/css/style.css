@@ -1,0 +1,99 @@
+/* styling for the body background and inputs */
+
+body {
+  background-color: #E0E0E0;
+}
+
+input {
+  padding: 5%;
+}
+
+/* color for nav bar */
+
+.navbar {
+  background-color: #3A606E;
+  padding: 1%;
+  align-items: center;
+}
+
+.navbar-brand {
+  color: white;
+  margin-right: 5%;
+}
+
+.navbar-toggler {
+  color: white;
+  background-color: black;
+}
+
+.nav-item {
+  margin-right: 8%;
+}
+
+/*  styling for buttons  */
+
+.goHomeBtn, .goDashboardBtn, .commentBtn, .createComment, .cancelBtn {
+  background-color: #E0E0E0 !important;
+  color: black;
+  border: black;
+}
+
+/* style for comment button to add margin */
+
+.commentBtn {
+  margin: 1%;
+}
+
+/*  style for the post list items (posts) */
+
+.postListItem {
+  padding: .1rem .1rem;
+  background-color: white;
+  border-top-width: 1;
+  text-decoration: none;
+  display: block;
+}
+
+/* info pill for username and post created date */
+
+.infoPill {
+  margin-right: 8px;
+}
+
+/* styling for the posts  */
+
+.postDivision {
+  background-color: #E0E0E0;
+}
+
+.postHeader {
+  background-color: #231010;
+  padding: 1%;
+}
+
+.postBodyArea {
+  padding: 2%;
+  word-wrap: break-word;
+  background-color: white;
+}
+
+.postFooter {
+  background-color: darkgray;
+  padding: 0.5%;
+}
+
+/*  styling for the comments  */
+
+.commentElemItem {
+  background-color: white;
+}
+
+.commentSection {
+  padding: 1%;
+}
+
+.commentDetails {
+  background-color: black;
+  color: white;
+  margin-right: 2%;
+}
