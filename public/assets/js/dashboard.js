@@ -82,7 +82,7 @@ axios.get('/api/users/posts', {
           </div>
 
           <div class="postFooter text-center rounded">
-            <button type="button" class="btn btn-primary deletePost" data-id="${id}">Delete</button>
+            <button type="button" class="btn btn-primary deletePost" data-id="${id}">Delete Post</button>
             <button class="btn btn-primary viewToggle" data-id="${id}">View Post</button>
             <button class="btn btn-primary editToggle" data-id="${id}">Edit Post</button>
             <br>
@@ -133,7 +133,7 @@ document.getElementById('createPost').addEventListener('click', event => {
           </div>
 
           <div class="postFooter text-center">
-            <button type="button" class="btn btn-dark deletePost" data-id="${id}">Delete</button>
+            <button type="button" class="btn btn-dark deletePost" data-id="${id}">Delete Post</button>
             <button type="button" class="dialogPost btn btn-dark" data-id="${id}" onclick="showPost()">View Post</button>
             <button class="btn btn-dark editToggle" data-id="${id}">Edit Post</button>
             <br>
