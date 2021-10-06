@@ -16,7 +16,7 @@ Follows MVC paradigm - powered by Express.js, Passport.js and MySQL/Sequelize
 
 <br>
 
-### [Deployed App (Heroku)]()
+### [Deployed App (Heroku)](https://tech-blog-mvc-sh.herokuapp.com/)
 
 ### [Github Repo](https://github.com/ssharp0/tech-blog)
 
