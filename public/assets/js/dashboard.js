@@ -317,7 +317,6 @@ document.addEventListener('click', event => {
 
 // event listener when cancel button is clicked to refresh page with no other action
 document.getElementById('cancelBtn').addEventListener('click', event => {
-  event.preventDefault()
   reloadWindow()
 })
 
