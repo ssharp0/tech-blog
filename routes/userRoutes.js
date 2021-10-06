@@ -19,8 +19,24 @@ router.post('/users/login', (req, res) => {
   })
 })
 
-// router to get all users posts
+// router to get all users posts with auth
 router.get('/users/posts', passport.authenticate('jwt'), (req, res) => res.json(req.user))
 
 // add error check duplicate username exists or blank values (also check on front)
 
+// router to get all usernames from database (to check for duplicates)
+router.get('/usernames', (req, res) => {
+
+  // find all users
+  User.findAll({})
+    .then(users => {
+      // assign usernames to an empty array, and for each user push the username to the array
+      let usernames = []
+      users.forEach(user => { usernames.push(user.username)})
+      res.json(usernames)
+    })
+    .catch(err => console.log(err))
+})
+
+// export router
+module.exports = router
