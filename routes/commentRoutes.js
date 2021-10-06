@@ -32,5 +32,16 @@ router.get('/comments/:postId', (req, res) => {
   .catch(err => console.log(err))
 })
 
+// get post by id (where the request parameters id matches) and include comment model
+router.get('/post/:id', (req, res) => {
+  Post.findOne({ where: { id: req.params.id }, include: ['u', { model: Comment, include: 'u' }] })
+    .then((dbPostData) => {
+      res.json(dbPostData)
+    })
+    .catch((err) => {
+      res.status(500).json(err)
+    })
+})
+
 // export router
 module.exports = router

@@ -41,16 +41,7 @@ router.put('/posts/:id', passport.authenticate('jwt'), (req, res) => {
     .catch(err => { res.status(500).json(err) })
 })
 
-// get post by id (where the request parameters id matches) and include comment model
-router.get('/post/:id', (req, res) => {
-  Post.findOne({ where: { id: req.params.id }, include: ['u', { model: Comment, include: 'u' }] })
-    .then((dbPostData) => {
-      res.json(dbPostData)
-    })
-    .catch((err) => {
-      res.status(500).json(err)
-    })
-})
+
 
 // export router for use
 module.exports = router
