@@ -1,3 +1,4 @@
+// to hide environment variables
 require('dotenv').config()
 
 const express = require('express')
@@ -8,10 +9,12 @@ const { Strategy: JWTStrategy, ExtractJwt } = require('passport-jwt')
 
 const app = express()
 
+// middleware
 app.use(express.static(join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+// passport for user authenticate
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -27,8 +30,10 @@ passport.use(new JWTStrategy({
   .then(user => cb(null, user))
   .catch(err => cb(err, null))))
 
+// use the routes
 app.use(require('./routes'))
 
+// require the database (JAWSDB Heroku or local port 3000 )
 require('./db')
   .sync()
   .then(() => app.listen(process.env.PORT || 3000))
