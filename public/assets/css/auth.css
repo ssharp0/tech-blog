@@ -1,0 +1,39 @@
+/* styling for the body background and input */
+
+body {
+ background-color: #E0E0E0;
+}
+
+input {
+ padding: 5%;
+}
+
+/* styling for the page header */
+.pageHeader {
+ background-color: #3A606E;
+}
+
+/* styling for go home button  */
+.goHomeBtn {
+ background-color: #E0E0E0 !important;
+ color: black;
+ border: black;
+}
+
+/* styling for the login and register rows (area to register/login) */
+.loginRow, .registerRow {
+ margin-left: 25%;
+ margin-right: 25%;
+ margin-top: 5%
+}
+
+.loginBtn, .registerBtn {
+ background-color: darkgrey !important;
+ color: black;
+ border: black;
+}
+
+.registerHeading, .loginHeading {
+ background-color: darkgrey;
+ padding: 1%
+}
