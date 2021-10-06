@@ -82,28 +82,25 @@ axios.get('/api/posts')
           // response (spread/rest) to comments array to grab all data
           let commentsArr = [...res.data]
 
-          // create element unordered list for the comment and add a className
-          let commentListItem = document.createElement('ul')
-          commentListItem.className = "list-group"
-
           // for each comment in the comments array
           commentsArr.forEach(comment => {
 
             // if the id (post id) matches the commments post id
             if (id == comment.postId) {
-              // create a list element and set the inner text as the comments comment amd append the comment to the post
+
+              // format the createdAt date
               formattedCommentCreateDate = formatDate(comment.createdAt)
-              let commentElem = document.createElement('li')
-              commentElem.className = "list-group-item commentElemItem"
-              commentElem.innerHTML = 
+              let commentListItem = document.createElement('ul')
+              commentListItem.className = "list-group"
+              commentListItem.innerHTML =
               `
-              <div>${comment.comment}</div>
-              <span class="badge badge-secondary mb-1 commentDetails">
-                From ${comment.username} on ${formattedCommentCreateDate}
-              </span>
+              <li class="list-group-item commentElemItem">
+                <div>${comment.comment}</div>
+                <span class="badge badge-secondary mb-1 commentDetails">
+                  From ${comment.username} on ${formattedCommentCreateDate}
+                </span>
+              </li>
               `
-              //  append the comment element to the list item (on the post)
-              commentListItem.append(commentElem)
               //  append the comment list item to the post with the id
               document.getElementById(id).append(commentListItem)
             }
@@ -114,11 +111,88 @@ axios.get('/api/posts')
   })
   .catch(err => { console.log(err) })
 
+// add global event listener for when click (create comment input)
+document.addEventListener('click', event => {
+  // if the event target class list contains comment (comment btn)
+  if (event.target.classList.contains('commentBtn')) {
+    // if there is a token in  location storage (user is logged in)
+    if (localStorage.getItem('token')) {
 
+      // id is the event target dataset id (post id from comment button on post) and create a form element
+      let id = event.target.dataset.id
+      let commentForm = document.createElement('form')
+      // add a classname to the form as the formid (post id) and add the inner html to gather user input text for comment
+      commentForm.className = `commentPost${id}`
+      commentForm.innerHTML =
+        `
+        <div class="mb-4">
+          <label for="commentBody" class="mt-2 text-white form-label"><strong>Comment: </strong></label>
+          <input type="text" class="form-control" id="commentBody">
+        </div>
+        <button data-id="${id}" type="submit" class="btn btn-dark createComment">Submit</button>
+        <button data-id="${id}" type="submit" class="btn btn-dark cancelBtn">Cancel</button>
+        `
+      // append the comment form to the post with the same post id
+      document.getElementById(id).append(commentForm)
+    }
+    // else if there is no token go to log in screen
+    else {
+      window.location = '/login.html'
+    }
+  }
+})
+
+// global event listener when clicked create comment (post user comment data from inputs)
+document.addEventListener('click', event => {
+  // if the event target class contains createComment
+  if (event.target.classList.contains('createComment')) {
+    // id is the event target dataset id post id
+    let id = event.target.dataset.id
+    let comment = document.getElementById('commentBody').value
+    // post (create) the comment with auth
+    axios.post('/api/comments',
+      {
+        id: id,
+        comment: comment
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      // then for the comments data
+      .then(({ data: commentsData }) => {
+        console.log(commentsData);
+        // set an index to comments length to grab the username and comment (last comment)
+        let commentIndex = commentsData.length
+        let commentUsername = commentsData[commentIndex - 1].username
+        let commentDate = commentsData[commentIndex - 1].createdAt
+        // format date and set id
+        let formattedCommentDate = formatDate(commentDate)
+        let id = event.target.dataset.id
+
+        // create a comment list element with comment data
+        let commentElem = document.createElement('li')
+        commentElem.className = 'list-group-item commentElemItem'
+        commentElem.innerHTML = 
+        `
+        <div>${comment}</div>
+        <span class="badge badge-secondary mb-1 commentDetails">
+          From ${commentUsername} on ${formattedCommentDate}
+        </span>
+        `
+        // get element id post id and append the comment to the post
+        document.getElementById(`${id}`).append(commentElem)
+        // can alternatively just reload window and remove above since get request will show/render the new comments but aligning for reference in future
+        // reloadWindow()
+      })
+      // catch error
+      .catch(err => { console.log(err) })
+  }
+})
 
 // global event listener if cancel button is clicked (to cancel a comment) then reload the page
 document.addEventListener('click', event => {
-  event.preventDefault()
   if (event.target.classList.contains('cancelBtn')) {
     reloadWindow()
   }
