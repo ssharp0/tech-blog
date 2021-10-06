@@ -1,5 +1,10 @@
 const { bootstrap } = window
 
+// event listener when goHome button is pressed go to index/home
+document.getElementById('goHome').addEventListener('click', () => {
+  window.location = '/index.html'
+})
+
 // event listener when register button is clicked
 document.getElementById('registerBtn').addEventListener('click', event => {
  event.preventDefault()

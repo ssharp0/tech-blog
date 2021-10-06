@@ -1,5 +1,9 @@
 const { bootstrap } = window
 
+// event listener when goHome button is pressed go to index/home
+document.getElementById('goHome').addEventListener('click', () => {
+  window.location = '/index.html'
+})
 
 // event listener when log in button is clicked
 document.getElementById('loginBtn').addEventListener('click', event => {
