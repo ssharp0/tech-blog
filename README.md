@@ -78,10 +78,7 @@ Node.js & MySQL required
 
 ## Screenshots
 
-Home/Landing Page
-![](public/assets/img/indexHomePage.png)
-
-Home Page with posts and comments
+Home Page (landing) with posts and comments
 ![](public/assets/img/indexHomePagePosts.png)
 
 Login
@@ -99,6 +96,6 @@ Create Post
 View Post
 ![](public/assets/img/viewPostDashboard.png)
 
-View Post
+Edit Post
 ![](public/assets/img/editPostDashboard.png)
 
