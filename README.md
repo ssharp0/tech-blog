@@ -78,5 +78,27 @@ Node.js & MySQL required
 
 ## Screenshots
 
-![](/)
+Home/Landing Page
+![](public/assets/img/indexHomePage.png)
+
+Home Page with posts and comments
+![](public/assets/img/indexHomePagePosts.png)
+
+Login
+![](public/assets/img/loginPage.png)
+
+Register
+![](public/assets/img/registerPage.png)
+
+Dashboard Page
+![](public/assets/img/dashboardPosts.png)
+
+Create Post
+![](public/assets/img/createPost.png)
+
+View Post
+![](public/assets/img/viewPostDashboard.png)
+
+View Post
+![](public/assets/img/editPostDashboard.png)
 
