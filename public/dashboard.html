@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog Dashboard</title>
+  <!-- reset css -->
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <!-- bootstrap css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- style css -->
+  <link rel="stylesheet" href="./assets/css/profile.css">
+</head>
+
+<body>
+
+  <!-- navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="./index.html">Tech Blog App</a>
+      <!-- collapse toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- go home button -->
+            <button id="goHome" class="btn btn-primary goHomeBtn"><span>Home</span></button>
+          </li>
+          <li class="nav-item">
+            <!-- to to dashboard button -->
+            <button id="goDashboard" class="btn btn-primary goDashboardBtn">Dashboard</button>
+          </li>
+          <li class="nav-item">
+            <!-- pull up information on site button -->
+            <button class="modal-button btn btn-primary informationBtn" href="#myModal2">Information</button>
+          </li>
+          <li class="nav-item">
+            <!-- logout button -->
+            <button id="logOut" class="btn btn-secondary logoutBtn">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- container for body -->
+  <div class="container mt-3">
+
+    <!-- page header details and naviation buttons -->
+    <div class="mt-4 p-5 text-white rounded text-center pageHeader">
+      <h1>The Tech Blog - Profile Dashboard</h1>
+      <h3><span id="showUser"></span></h3>
+    </div>
+
+    <!-- Trigger/Open The Modal to add a post-->
+    <div class="text-center">
+      <button class="modal-button btn btn-primary addPostBtn" href="#myModal1">Add a Post</button>
+    </div>
+    
+    <!-- The Modal -->
+    <div id="myModal1" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <!-- modal header -->
+        <div class="modal-header">
+          <span class="close">×</span>
+          <h2>Create a New Post</h2>
+        </div>
+        <!-- modal body -->
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" maxlength="250">
+            </div>
+            <div class="mb-3">
+              <label for="body" class="form-label">Body</label>
+              <input type="text" class="form-control" id="body" maxlength="250">
+              <button id="createPost" type="submit" class="btn btn-primary createPostBtn">Create Post</button>
+            </div>
+          </form>
+        </div>
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <h3>Tech Blog</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- The modal to view information -->
+    <div id="myModal2" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">×</span>
+          <h2>Resource</h2>
+        </div>
+        <!-- modal body -->
+        <div class="modal-body">
+          <strong><p>Navigation:</p></strong>
+          <ul>
+            <li>Click <strong>'Home'</strong> to go to the home page to see your posts as well see and comment on other users' posts</li>
+            <li>Click <strong>'Dashboard'</strong> to go to the user's dashboard/profile page to view all user's posts, edit user's posts and delete user's posts</li>
+            <li>Click <strong>'Logout'</strong> to log out of the application</li>
+          </ul>
+          <strong><p>Add a Post:</p></strong>
+          <ul>
+            <li>Click <strong>'Add a Post'</strong> on the dashboard page to add a new user post. Add a title and body on the prompt and click <strong>'Create Post'</strong></li>
+          </ul>
+          <strong><p>View a Post:</p></strong>
+          <ul>
+            <li>Click <strong>'View Post'</strong> on a single post to view details about the post. Hit <strong>'esc (escape)'</strong> to exit the view window. Note, created and updated dates reflect server time.</li>
+          </ul>
+          <strong><p>Edit a Post:</p></strong>
+          <ul>
+            <li>Click <strong>'Edit Post'</strong> on a single post to edit the title and/or body. Click <strong>'Update'</strong> to effect the updates.</li>
+          </ul>
+          <strong><p>Delete a Post:</p></strong>
+          <ul>
+            <li>Click <strong>'Delete'</strong> on a single post to delete the post.</li>
+          </ul>
+        </div>
+        <!-- modal footer -->
+        <div class="modal-footer">
+          <h3>Tech Blog</h3>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- dialog box to view posts -->
+    <dialog id="myDialog"></dialog>
+
+    <!-- div to render the edit information -->
+    <div class="target viewEditPost card">
+      <!-- card header for edit post -->
+      <div class="card-header">
+        <h2 id="viewEditHeader"></h2>
+      </div>
+      <!-- post form -->
+      <form id="edit-post-form" class="card-body">
+        <input type="hidden" name="post-id" id="postViewEditFormId">
+        <!-- title and body -->
+        <div class="mb-3">
+          <label for="post-title" class="form-label">Title</label>
+          <input type="text" name="post-title" class="form-control" id="viewEditTitle" maxlength="250">
+        </div>
+        <div class="mb-3">
+          <label for="post-body" class="form-label">Body</label>
+          <input name="post-body" type="text" class="form-control" id="viewEditBody" maxlength="250">
+        </div>
+        <!-- button to update and cancel -->
+        <button id="updateBtn" type="button" class="btn btn-dark updatePostBtn">Update</button>
+        <button type="button" class="btn btn-dark cancelBtn" id="cancelBtn">Cancel</button>
+      </form>
+    </div>
+
+    <!-- div to render posts from get requests -->
+    <div id="posts" class="mt-4 row list-group"></div>
+
+  </div>
+
+  <!-- scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./assets/js/dashboard.js"></script>
+</body>
+
+</html>
